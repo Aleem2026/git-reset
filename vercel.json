@@ -1,7 +1,5 @@
 {
   "framework": "vite",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/client",
-  "installCommand": "npm install",
-  "nodeVersion": "22.x"
+  "installCommand": "npm install"
 }
