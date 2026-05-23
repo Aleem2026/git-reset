@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/lib/use-theme";
 
 export function Navbar() {
+  const { theme, toggle } = useTheme();
   return (
     <motion.header
       initial={{ y: -30, opacity: 0 }}
@@ -37,6 +40,17 @@ export function Navbar() {
             </a>
           ))}
         </div>
+        <button
+          onClick={toggle}
+          className="ml-1 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === "light" ? (
+            <Moon className="w-4 h-4" />
+          ) : (
+            <Sun className="w-4 h-4" />
+          )}
+        </button>
         <a
           href="#contact"
           className="ml-1 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity ring-neon"

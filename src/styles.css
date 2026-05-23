@@ -41,7 +41,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* Blackish-green premium theme */
+  /* Dark theme — blackish-green premium */
   --background: oklch(0.16 0.025 165);
   --foreground: oklch(0.96 0.015 150);
 
@@ -110,6 +110,75 @@
     linear-gradient(to bottom, oklch(0.4 0.08 155 / 0.08) 1px, transparent 1px);
 }
 
+.light {
+  --background: oklch(0.96 0.01 150);
+  --foreground: oklch(0.18 0.025 165);
+
+  --card: oklch(0.98 0.008 150);
+  --card-foreground: oklch(0.18 0.025 165);
+
+  --popover: oklch(0.98 0.008 150);
+  --popover-foreground: oklch(0.18 0.025 165);
+
+  --primary: oklch(0.55 0.2 150);
+  --primary-foreground: oklch(0.98 0.01 150);
+
+  --secondary: oklch(0.92 0.015 150);
+  --secondary-foreground: oklch(0.22 0.025 165);
+
+  --muted: oklch(0.93 0.01 150);
+  --muted-foreground: oklch(0.55 0.03 155);
+
+  --accent: oklch(0.88 0.05 155);
+  --accent-foreground: oklch(0.18 0.025 165);
+
+  --destructive: oklch(0.55 0.2 22);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.85 0.025 155 / 0.7);
+  --input: oklch(0.88 0.02 155);
+  --ring: oklch(0.55 0.2 150);
+
+  --neon: oklch(0.5 0.2 150);
+  --neon-soft: oklch(0.6 0.15 152);
+
+  --gradient-hero: radial-gradient(
+      ellipse 80% 60% at 50% -10%,
+      oklch(0.65 0.18 150 / 0.2),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 50% at 80% 30%,
+      oklch(0.55 0.15 155 / 0.12),
+      transparent 70%
+    ),
+    linear-gradient(180deg, oklch(0.97 0.01 150), oklch(0.94 0.01 155));
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    oklch(0.6 0.22 148),
+    oklch(0.45 0.18 155)
+  );
+
+  --gradient-card: linear-gradient(
+    160deg,
+    oklch(0.98 0.01 150 / 0.9),
+    oklch(0.95 0.01 155 / 0.7)
+  );
+
+  --shadow-glow: 0 0 40px oklch(0.55 0.2 150 / 0.25),
+    0 0 80px oklch(0.5 0.18 152 / 0.1);
+  --shadow-elev: 0 30px 60px -20px oklch(0 0 0 / 0.08),
+    0 10px 30px -10px oklch(0.4 0.1 150 / 0.1);
+
+  --grid-pattern: linear-gradient(
+      to right,
+      oklch(0.4 0.06 155 / 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, oklch(0.4 0.06 155 / 0.06) 1px, transparent 1px);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -165,6 +234,10 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid oklch(0.45 0.08 155 / 0.18);
+  }
+  .light .glass {
+    background: oklch(0.96 0.01 150 / 0.7);
+    border: 1px solid oklch(0.8 0.03 155 / 0.3);
   }
   .ring-neon {
     box-shadow: 0 0 0 1px oklch(0.85 0.22 150 / 0.35),
