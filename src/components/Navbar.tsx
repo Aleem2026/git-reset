@@ -15,7 +15,7 @@ export function Navbar() {
       <nav className="glass rounded-full px-3 py-2 flex items-center gap-1 shadow-elev">
         <Link to="/" className="flex items-center gap-2 px-3">
           <div className="relative w-7 h-7">
-            <div className="absolute inset-0 rounded-md bg-gradient-to-br from-neon to-neon-soft" />
+            <div className="absolute inset-0 rounded-md bg-gradient-to-br from-neon via-amber to-violet" />
             <div className="absolute inset-0.5 rounded-[5px] bg-background flex items-center justify-center text-neon font-mono text-xs font-bold">
               A
             </div>
@@ -55,7 +55,7 @@ export function Navbar() {
           href="#contact"
           className="ml-1 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity ring-neon"
         >
-          Book a call
+          Start
         </a>
       </nav>
     </motion.header>

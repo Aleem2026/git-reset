@@ -1,65 +1,82 @@
 import { motion } from "motion/react";
-import { Quote } from "lucide-react";
+import { BarChart3, Clock3, Quote, ShieldCheck } from "lucide-react";
 
-const testimonials = [
+const proof = [
   {
-    quote:
-      "Our call center cut response time from 4 minutes to under 10 seconds. The AI agent handles 70% of volume before a human ever touches a call.",
-    author: "Sarah Chen",
-    role: "VP of Operations, Finova Lending",
+    icon: Clock3,
+    label: "Speed",
+    value: "Prototype in week one",
   },
   {
-    quote:
-      "They rebuilt our entire customer portal in six weeks. The design is gorgeous and conversion went up 40%. This team ships like no one else.",
-    author: "Marcus Webb",
-    role: "CTO, Relay Health",
+    icon: ShieldCheck,
+    label: "Quality",
+    value: "Human review before launch",
   },
   {
-    quote:
-      "We tried five AI voice providers before Awazsuno. The difference is they actually understand our business — the voice agent sounds like us.",
-    author: "Priya Kapoor",
-    role: "Head of CX, SwiftRoutes",
+    icon: BarChart3,
+    label: "Clarity",
+    value: "Analytics after go-live",
   },
+];
+
+const notes = [
+  "Best for founders who want a premium AI front office without hiring a full product team.",
+  "Built for operators who need calls answered, leads qualified, and customers routed fast.",
+  "Designed for businesses that care about how automation feels, not only what it does.",
 ];
 
 export function Testimonials() {
   return (
-    <section className="relative py-28 px-6">
+    <section className="relative py-28 px-6 surface-band">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-2xl mb-16">
-          <div className="text-xs font-mono text-neon uppercase tracking-widest mb-3">
-            / 04 — Testimonials
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-end mb-16">
+          <div>
+            <div className="section-kicker">/ 04 - Confidence</div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Premium means calm, measurable, and launch-ready.
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Trusted by teams that ship.
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Real results from founders, operators, and engineering leaders who
-            bet on us.
+          <p className="text-muted-foreground text-lg lg:max-w-xl">
+            Until you have public case studies, the strongest trust signal is a
+            clear delivery promise: fast prototypes, careful launch control, and
+            reporting that shows what the system is doing.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {testimonials.map((t, i) => (
+        <div className="grid md:grid-cols-3 gap-5 mb-5">
+          {proof.map((item, index) => (
             <motion.div
-              key={i}
+              key={item.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass rounded-2xl p-7 flex flex-col"
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              className="premium-card"
             >
-              <Quote className="w-8 h-8 text-neon/40 mb-4 shrink-0" />
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
-                "{t.quote}"
-              </p>
-              <div className="border-t border-border/40 pt-4">
-                <div className="font-semibold text-sm">{t.author}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">
-                  {t.role}
-                </div>
+              <item.icon className="w-8 h-8 text-amber mb-5" />
+              <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                {item.label}
               </div>
+              <div className="text-xl font-semibold">{item.value}</div>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          {notes.map((note, index) => (
+            <motion.article
+              key={note}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              className="glass rounded-[1.25rem] p-7"
+            >
+              <Quote className="w-7 h-7 text-neon/40 mb-5" />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {note}
+              </p>
+            </motion.article>
           ))}
         </div>
       </div>

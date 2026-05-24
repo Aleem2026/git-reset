@@ -1,78 +1,127 @@
 import { motion } from "motion/react";
+import type { CSSProperties } from "react";
+import {
+  Activity,
+  CalendarCheck,
+  MessageSquareText,
+  PhoneCall,
+} from "lucide-react";
 
-// 3D-feeling animated orb built with layered gradients + CSS transforms.
+const orbitNodes = [
+  { icon: PhoneCall, label: "Voice", delay: 0, radius: 178 },
+  { icon: MessageSquareText, label: "Chat", delay: -2.5, radius: 206 },
+  { icon: CalendarCheck, label: "Book", delay: -5, radius: 190 },
+];
+
 export function Orb() {
   return (
-    <div className="relative w-[480px] h-[480px] max-w-full mx-auto [perspective:1200px]">
-      {/* Outer glow */}
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,oklch(0.7_0.22_150/0.35),transparent_60%)] blur-2xl animate-pulse-glow" />
-
-      {/* Rotating rings */}
+    <div className="relative w-[520px] h-[520px] max-w-full mx-auto [perspective:1400px]">
       <motion.div
-        animate={{ rotateX: 360 }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-8 rounded-full border border-neon/30 [transform-style:preserve-3d]"
-        style={{ transform: "rotateY(70deg)" }}
+        animate={{ rotateX: [58, 66, 58], rotateZ: 360 }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-4 rounded-full border border-amber/25 [transform-style:preserve-3d]"
       />
       <motion.div
         animate={{ rotateY: -360 }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-4 rounded-full border border-neon/20 [transform-style:preserve-3d]"
-        style={{ transform: "rotateX(65deg)" }}
+        className="absolute inset-12 rounded-full border border-neon/25 [transform-style:preserve-3d]"
+        style={{ transform: "rotateX(72deg)" }}
       />
       <motion.div
-        animate={{ rotateZ: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-neon/15"
+        animate={{ rotateX: 360 }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-20 rounded-full border border-violet/25 [transform-style:preserve-3d]"
+        style={{ transform: "rotateY(68deg)" }}
       />
 
-      {/* Core sphere */}
       <motion.div
-        animate={{ scale: [1, 1.04, 1] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-20 rounded-full shadow-glow"
+        animate={{
+          rotate: 360,
+          scale: [1, 1.025, 1],
+        }}
+        transition={{
+          rotate: { duration: 34, repeat: Infinity, ease: "linear" },
+          scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="absolute inset-24 rounded-full shadow-lux"
         style={{
           background:
-            "radial-gradient(circle at 30% 30%, oklch(0.95 0.18 150), oklch(0.55 0.2 155) 45%, oklch(0.2 0.05 165) 75%)",
+            "conic-gradient(from 120deg, oklch(0.85 0.16 150), oklch(0.78 0.13 85), oklch(0.58 0.18 290), oklch(0.85 0.16 150))",
         }}
       >
-        <div className="absolute inset-0 rounded-full opacity-50 mix-blend-overlay"
+        <div
+          className="absolute inset-2 rounded-full"
           style={{
             background:
-              "conic-gradient(from 0deg, oklch(0.9 0.22 148), transparent, oklch(0.7 0.2 152), transparent, oklch(0.9 0.22 148))",
+              "radial-gradient(circle at 32% 28%, oklch(0.98 0.08 120), oklch(0.34 0.08 175) 44%, oklch(0.13 0.03 220) 76%)",
           }}
         />
+        <div className="absolute inset-10 rounded-full border border-white/10" />
+        <div className="absolute inset-20 rounded-full bg-white/10 blur-xl" />
       </motion.div>
 
-      {/* Orbiting nodes */}
-      {[0, 1, 2, 3, 4].map((i) => (
+      {orbitNodes.map((node) => (
         <div
-          key={i}
-          className="absolute top-1/2 left-1/2 w-3 h-3 -mt-1.5 -ml-1.5"
-          style={{
-            // @ts-expect-error css var
-            "--orbit-r": `${170 + i * 18}px`,
-            animation: `orbit ${10 + i * 3}s linear infinite`,
-            animationDelay: `${i * -2}s`,
-          }}
+          key={node.label}
+          className="absolute top-1/2 left-1/2 -mt-7 -ml-7"
+          style={
+            {
+              "--orbit-r": `${node.radius}px`,
+              animation: "orbit 16s linear infinite",
+              animationDelay: `${node.delay}s`,
+            } as CSSProperties
+          }
         >
-          <div className="w-full h-full rounded-full bg-neon shadow-[0_0_12px_oklch(0.85_0.22_150)]" />
+          <div className="w-14 h-14 rounded-2xl bg-background/70 border border-border backdrop-blur flex items-center justify-center shadow-elev">
+            <node.icon className="w-5 h-5 text-amber" />
+          </div>
         </div>
       ))}
 
-      {/* Voice waveform */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-end gap-1 h-10">
-        {Array.from({ length: 14 }).map((_, i) => (
-          <span
-            key={i}
-            className="w-1 bg-gradient-to-t from-neon-soft to-neon rounded-full animate-wave"
-            style={{
-              height: "100%",
-              animationDelay: `${i * 0.08}s`,
-            }}
-          />
-        ))}
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="absolute left-2 top-20 glass rounded-2xl p-4 w-44 shadow-elev"
+      >
+        <div className="flex items-center gap-2 text-xs font-mono text-amber mb-2">
+          <Activity className="w-4 h-4" />
+          Live workflow
+        </div>
+        <div className="space-y-2">
+          {[78, 52, 88].map((width, index) => (
+            <span
+              key={width}
+              className="block h-2 rounded-full bg-gradient-to-r from-neon to-amber"
+              style={{ width: `${width}%`, opacity: 0.9 - index * 0.16 }}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.65 }}
+        className="absolute right-3 bottom-24 glass rounded-2xl p-4 w-48 shadow-elev"
+      >
+        <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
+          AI handoff
+        </div>
+        <div className="text-sm font-medium">Qualified lead booked</div>
+        <div className="mt-3 flex items-end gap-1 h-8">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <span
+              key={index}
+              className="w-1.5 bg-gradient-to-t from-violet to-neon rounded-full animate-wave"
+              style={{
+                height: `${38 + ((index * 17) % 55)}%`,
+                animationDelay: `${index * 0.07}s`,
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }

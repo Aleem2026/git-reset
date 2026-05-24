@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Clock, Mail, MapPin, PhoneCall } from "lucide-react";
 
 const contactItems = [
   {
@@ -31,25 +31,26 @@ export function CTA() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative rounded-[2rem] overflow-hidden border border-neon/30 shadow-glow p-10 md:p-16"
+          className="relative rounded-[2rem] overflow-hidden border border-amber/30 shadow-lux p-10 md:p-16"
           style={{
             background:
-              "radial-gradient(ellipse at top, oklch(0.35 0.15 150 / 0.6), oklch(0.16 0.025 165) 70%)",
+              "linear-gradient(135deg, oklch(0.17 0.035 220), oklch(0.14 0.03 165) 55%, oklch(0.2 0.07 95))",
           }}
         >
           <div className="absolute inset-0 grid-bg opacity-30" />
-          <div className="relative grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+          <div className="relative grid lg:grid-cols-[1.15fr_1fr] gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neon mb-4">
-                <span className="w-2 h-2 rounded-full bg-neon animate-pulse" />
-                Taking on 3 builds this quarter
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber mb-4">
+                <PhoneCall className="w-4 h-4" />
+                Limited premium builds each month
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-5 leading-tight">
-                Let's build your <span className="text-gradient">AI workforce.</span>
+                Give your business an{" "}
+                <span className="text-gradient">AI front office.</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl mb-8">
-                Tell us what you'd automate first. We'll come back within 24
-                hours with a fixed scope, timeline, and a working demo.
+                Send the first workflow you want automated. We will reply with a
+                clear scope, timeline, and the best package for your launch.
               </p>
               <a
                 href="mailto:aleem00012001@gmail.com"
@@ -64,8 +65,8 @@ export function CTA() {
               {contactItems.map((item) => {
                 const Icon = item.icon;
                 const inner = (
-                  <div className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-background/40 backdrop-blur p-4 hover:border-neon/40 transition-colors">
-                    <div className="w-11 h-11 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon">
+                  <div className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-background/40 backdrop-blur p-4 hover:border-amber/40 transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-amber/10 border border-amber/30 flex items-center justify-center text-amber">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -77,7 +78,7 @@ export function CTA() {
                       </div>
                     </div>
                     {item.href && (
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-neon group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-amber group-hover:translate-x-1 transition-all" />
                     )}
                   </div>
                 );
@@ -101,9 +102,12 @@ export function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6 text-sm text-muted-foreground">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-4">
-        <div>© {new Date().getFullYear()} Awazsuno — Sydney, Australia. All rights reserved.</div>
+        <div>
+          © {new Date().getFullYear()} Awazsuno. Sydney, Australia. All rights
+          reserved.
+        </div>
         <div className="font-mono text-xs">
-          Built with intent. Designed in the dark.
+          AI voice, chat, automation, and premium web systems.
         </div>
       </div>
     </footer>

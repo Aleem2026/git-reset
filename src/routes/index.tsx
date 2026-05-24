@@ -10,17 +10,17 @@ import { CTA, Footer } from "@/components/CTA";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Awazsuno — AI Voice Agents, Chatbots & Premium Web Apps" },
+      { title: "Awazsuno - Premium AI Voice Agents, Chatbots & Web Apps" },
       {
         name: "description",
         content:
-          "Premium AI voice calling, chatbots, and bespoke web applications for startups and enterprise call centers. Transparent pricing, white-glove delivery.",
+          "Premium AI voice agents, chat systems, automation workflows, and bespoke web applications for businesses that want automation to drive revenue.",
       },
-      { property: "og:title", content: "Awazsuno — AI Voice, Chat & Web" },
+      { property: "og:title", content: "Awazsuno - AI Voice, Chat & Web" },
       {
         property: "og:description",
         content:
-          "AI voice agents, chatbots, and premium web applications engineered to convert.",
+          "AI voice agents, chat systems, automation workflows, and premium web applications engineered to convert.",
       },
     ],
     links: [
